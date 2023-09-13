@@ -1,0 +1,20 @@
+#urls.py
+
+# en finegap/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    # Otras URL de la aplicación...
+    path('destino/<int:destino_id>/', views.detalle_destino, name='detalle_destino'),
+]
+
+  #views.py
+
+# en finegap/views.py
+from django.shortcuts import render
+from .models import Destino
+
+def detalle_destino(request, destino_id):
+    destino = Destino.objects.get(pk=destino_id)
+    return render(request, 'turismo/detalle_destino.html', {'destino': destino})
